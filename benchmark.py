@@ -78,7 +78,7 @@ def run_benchmark(model_name: str, prompt: str, verbose: bool, client: Client) -
     # with open("data/ollama/ollama_res.json", "w") as outfile:
     #     outfile.write(json.dumps(last_element, indent=4))
 
-    return OllamaResponse.model_validate(last_element)
+    return last_element
 
 
 def nanosec_to_sec(nanosec):
@@ -150,7 +150,7 @@ def get_full_model_list(client) -> List[str]:
     """
     models = client.list().get("models", [])
     # print(models)
-    return [model["name"] for model in models]
+    return [model["model"] for model in models]
 
 def show_models_list(model_names: List[str]) -> None:
     """
